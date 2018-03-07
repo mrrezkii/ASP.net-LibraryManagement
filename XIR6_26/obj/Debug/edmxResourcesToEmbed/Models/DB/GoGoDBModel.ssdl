@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GoGoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bis">
+    <Key>
+      <PropertyRef Name="id_bis" />
+    </Key>
+    <Property Name="id_bis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_member" Type="int" Nullable="false" />
+    <Property Name="dari" Type="varchar" MaxLength="100" />
+    <Property Name="ke" Type="varchar" MaxLength="100" />
+    <Property Name="saldo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="id_member" />
+    </Key>
+    <Property Name="id_member" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nama" Type="varchar" MaxLength="100" />
+    <Property Name="telepon" Type="varchar" MaxLength="100" />
+    <Property Name="saldo" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Bis__id_member__29572725">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Bis" Type="Self.Bis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="id_member" />
+      </Principal>
+      <Dependent Role="Bis">
+        <PropertyRef Name="id_member" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GoGoDBModelStoreContainer">
+    <EntitySet Name="Bis" EntityType="Self.Bis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Bis__id_member__29572725" Association="Self.FK__Bis__id_member__29572725">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Bis" EntitySet="Bis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

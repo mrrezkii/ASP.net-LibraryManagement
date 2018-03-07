@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GoGoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bis">
+          <Key>
+            <PropertyRef Name="id_bis" />
+          </Key>
+          <Property Name="id_bis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_member" Type="int" Nullable="false" />
+          <Property Name="dari" Type="varchar" MaxLength="100" />
+          <Property Name="ke" Type="varchar" MaxLength="100" />
+          <Property Name="saldo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="id_member" />
+          </Key>
+          <Property Name="id_member" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama" Type="varchar" MaxLength="100" />
+          <Property Name="telepon" Type="varchar" MaxLength="100" />
+          <Property Name="saldo" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bis__id_member__29572725">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Bis" Type="Self.Bis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="Bis">
+              <PropertyRef Name="id_member" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GoGoDBModelStoreContainer">
+          <EntitySet Name="Bis" EntityType="Self.Bis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bis__id_member__29572725" Association="Self.FK__Bis__id_member__29572725">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Bis" EntitySet="Bis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GoGoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bis">
+          <Key>
+            <PropertyRef Name="id_bis" />
+          </Key>
+          <Property Name="id_bis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_member" Type="Int32" Nullable="false" />
+          <Property Name="dari" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ke" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="saldo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK__Bis__id_member__29572725" FromRole="Bis" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="id_member" />
+          </Key>
+          <Property Name="id_member" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telepon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="saldo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bis" Relationship="Self.FK__Bis__id_member__29572725" FromRole="Member" ToRole="Bis" />
+        </EntityType>
+        <Association Name="FK__Bis__id_member__29572725">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Bis" Type="GoGoDBModel.Bis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="Bis">
+              <PropertyRef Name="id_member" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GoGoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bis1" EntityType="GoGoDBModel.Bis" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <AssociationSet Name="FK__Bis__id_member__29572725" Association="Self.FK__Bis__id_member__29572725">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Bis" EntitySet="Bis1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GoGoDBModelStoreContainer" CdmEntityContainer="GoGoDBEntities">
+          <EntitySetMapping Name="Bis1">
+            <EntityTypeMapping TypeName="GoGoDBModel.Bis">
+              <MappingFragment StoreEntitySet="Bis">
+                <ScalarProperty Name="id_bis" ColumnName="id_bis" />
+                <ScalarProperty Name="id_member" ColumnName="id_member" />
+                <ScalarProperty Name="dari" ColumnName="dari" />
+                <ScalarProperty Name="ke" ColumnName="ke" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="GoGoDBModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="id_member" ColumnName="id_member" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="telepon" ColumnName="telepon" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

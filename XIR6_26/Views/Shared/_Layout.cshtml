@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> @Html.ActionLink("Go Go ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="dropdownCommonMenu" data-toggle="dropdown">Akun</a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCommonMenu">
+                                <li role="menuitem">@Html.ActionLink("Log In", "LogIn", "Account")</li>
+                                <li role="menuitem">@Html.ActionLink("Sign Up", "SignUp", "Account")</li>
+                            </ul>
+                            <!-- DropDown example -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="dropdownCommonMenu" data-toggle="dropdown">Role</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCommonMenu">
+                                    <li role="menuitem">@Html.ActionLink("Member", "Index", "Home")</li>
+                                    <li role="menuitem" class="disabled">@Html.ActionLink("Admin (disabled)", "Index", "Home")</li>
+                                    <li role="menuitem" class="divider"></li> 
+                                </ul>
+                            </li>
+                        </ul>
+</div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <center><p style="background:url('../../Content/x.jpg');background-size:cover;padding:0.75%;border-radius:3%;">&copy; @DateTime.Now.Year - Go Go </p></center>
+        </footer>
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

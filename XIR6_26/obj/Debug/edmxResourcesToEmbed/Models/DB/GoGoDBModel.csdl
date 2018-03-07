@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GoGoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bis">
+    <Key>
+      <PropertyRef Name="id_bis" />
+    </Key>
+    <Property Name="id_bis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_member" Type="Int32" Nullable="false" />
+    <Property Name="dari" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ke" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="saldo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Member" Relationship="Self.FK__Bis__id_member__29572725" FromRole="Bis" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="id_member" />
+    </Key>
+    <Property Name="id_member" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="telepon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="saldo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bis" Relationship="Self.FK__Bis__id_member__29572725" FromRole="Member" ToRole="Bis" />
+  </EntityType>
+  <Association Name="FK__Bis__id_member__29572725">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Bis" Type="GoGoDBModel.Bis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="id_member" />
+      </Principal>
+      <Dependent Role="Bis">
+        <PropertyRef Name="id_member" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GoGoDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bis1" EntityType="GoGoDBModel.Bis" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <AssociationSet Name="FK__Bis__id_member__29572725" Association="Self.FK__Bis__id_member__29572725">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Bis" EntitySet="Bis1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

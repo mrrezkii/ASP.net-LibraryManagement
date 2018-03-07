@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GoGoDBModelStoreContainer" CdmEntityContainer="GoGoDBEntities">
+    <EntitySetMapping Name="Bis1">
+      <EntityTypeMapping TypeName="GoGoDBModel.Bis">
+        <MappingFragment StoreEntitySet="Bis">
+          <ScalarProperty Name="id_bis" ColumnName="id_bis" />
+          <ScalarProperty Name="id_member" ColumnName="id_member" />
+          <ScalarProperty Name="dari" ColumnName="dari" />
+          <ScalarProperty Name="ke" ColumnName="ke" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="GoGoDBModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="id_member" ColumnName="id_member" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="telepon" ColumnName="telepon" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
